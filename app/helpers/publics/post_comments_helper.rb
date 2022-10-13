@@ -1,0 +1,2 @@
+module Publics::PostCommentsHelper
+end
