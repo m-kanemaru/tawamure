@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <% if post.image_id.present?%>
+          <% if post.image_id.content_type.include?('image/')%>
+            <td><%= image_tag post.image_id, size: '50x50' %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <% end %>
+        <td><%= post.text %></td>
+        <td><%= render 'publics/post_favorites/favorite' ,post: post %></td>
+        <td><%= render 'publics/post_comments/comment_count' ,post: post %></td>
+        <td><%= link_to 'Show', post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

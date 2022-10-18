@@ -1,2 +1,4 @@
-<h1>Public::User#show</h1>
-<p>Find me in app/views/public/user/show.html.erb</p>
+<h2>User info</h2>
+<%= render 'info', user: @user %>
+<h2>Posts</h2>
+<%= render 'post',posts: @posts %>

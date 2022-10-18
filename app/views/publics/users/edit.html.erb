@@ -1,2 +1,25 @@
-<h1>Public::User#edit</h1>
-<p>Find me in app/views/public/user/edit.html.erb</p>
+    <%= form_with model:@user, local:true do |f| %>
+      <div>
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname %>
+      </div>
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :birthdate %>
+        <%= f.date_select :birthdate %>
+      </div>
+     <div>
+        <%= f.label :image %>
+        <%= f.file_field :image_id, accept: 'image/*' %>
+      </div>
+      <div>
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction %>
+      </div>
+      <div>
+        <%= f.submit %>
+    <% end %>
+    <%= link_to '退会',user_unsubscribe_path(@user) %>

@@ -1,2 +1,10 @@
-<h1>Public::Post#show</h1>
-<p>Find me in app/views/public/post/show.html.erb</p>
+<h2>Post detail</h2>
+<%= link_to(@post.user) do %>
+<%= image_tag @post.user.get_image_id, size:"100x100" %><br>
+<%= @post.user.nickname %>
+<% end %>
+<%= link_to @post.text, @post %>
+<%= @post.image_id %>
+<%= link_to 'edit', edit_post_path(@post) %>
+<div><%= render 'publics/post_comments/comment' ,post: @post, post_comment: @post_comment %></div>
+<div><%= render 'publics/post_comments/index' ,post: @post %></div>

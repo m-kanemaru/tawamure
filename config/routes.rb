@@ -3,19 +3,15 @@ Rails.application.routes.draw do
   
   #public側の設定(chatと通知は未設定)
   scope module: :publics do
-    get 'relationships/followings'
-    get 'relationships/followers'
     
     devise_for :users
-     
-    resources :users, only: [:index,:show,:edit,:update]
     
-    resources :users do
+    resources :users, only: [:index,:show,:edit,:update] do
+      get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
       resource :relationships, only: [:create, :destroy]
-        member do
         get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
-      end
     end
     
     resources :posts, only: [:new, :index,:show,:edit,:create,:destroy,:update] do
@@ -24,7 +20,7 @@ Rails.application.routes.draw do
     end
     
     resources :groups, only: [:new, :index,:show,:edit,:create,:destroy,:update]
-
+    
   end
 
 
