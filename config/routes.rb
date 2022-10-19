@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to:"homes#top"
+  get "search" => "searches#search"
   
   #public側の設定(chatと通知は未設定)
   scope module: :publics do
@@ -19,15 +20,19 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
     
-    resources :groups, only: [:new, :index,:show,:edit,:create,:destroy,:update]
+    resources :groups, only: [:new, :index,:show,:edit,:create,:destroy,:update] do
+      get "join" => "groups#join"
+    end
     
   end
 
 
   #admin側の設定
-  namespace :admins do
+  devise_for :admins, only: [:sessions, :password], :controllers => {
+    :sessions => 'admins/sessions'
+  }
   
-    devise_for :admins
+  namespace :admins do
     
     resources :users, only: [:index,:show,:edit,:update]
     

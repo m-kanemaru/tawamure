@@ -1,6 +1,6 @@
 class Publics::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  #before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   def new
     @post = Post.new
   end
@@ -29,7 +29,8 @@ class Publics::PostsController < ApplicationController
   end
   
   def update
-    if Post.update(post_params)
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
       redirect_to post_path(@post),notice:"投稿成功"
     else
       render :edit
@@ -37,6 +38,7 @@ class Publics::PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
@@ -47,11 +49,11 @@ class Publics::PostsController < ApplicationController
     params.require(:post).permit(:text, :image_id)
   end
   
-  def ensure_correct_user
-    @post = Post.find(params[:id])
-    unless @Post.user == current_user
-      redirect_to posts_path
-    end
-  end
+  # def ensure_correct_user
+  #   @post = Post.find(params[:id])
+  #   unless @Post.user == current_user
+  #     redirect_to posts_path
+  #   end
+  # end
   
 end

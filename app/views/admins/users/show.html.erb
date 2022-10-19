@@ -1,0 +1,10 @@
+<h2>User info</h2>
+<%= render 'info', user: @user %>
+<h2>Posts</h2>
+<%= render 'post',posts: @posts %>
+<%= form_with model:@user, url: admins_user_path, method: :PATCH, local:true do |f| %>
+    <%= f.label :会員ステータス %>
+        <label><%= f.radio_button :is_deleted?, false, checked: true %>有効</label>
+        <label><%= f.radio_button :is_deleted, true %>退会</label>
+    <%= f.submit "変更を保存" %>
+<% end %>

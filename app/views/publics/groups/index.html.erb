@@ -1,2 +1,3 @@
-<h1>Public::Groups#index</h1>
-<p>Find me in app/views/public/groups/index.html.erb</p>
+<div><%=link_to "グループを作成する",new_group_path %></div>
+<h2>Groups</h2>
+<%= render 'index', groups: @groups %>

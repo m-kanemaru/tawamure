@@ -11,9 +11,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'searches/search' %>
-    
+    <% if admin_signed_in? %>
+    <%= link_to 'post', admins_posts_path %>
+    <%= link_to 'user', admins_users_path %>
+    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+    <% else %>
+     <%= link_to 'ログイン', new_admin_session_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

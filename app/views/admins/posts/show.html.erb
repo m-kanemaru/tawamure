@@ -1,2 +1,9 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<h2>Post detail</h2>
+<%= link_to(@post.user) do %>
+<%= image_tag @post.user.get_image_id, size:"100x100" %><br>
+<%= @post.user.nickname %>
+<% end %>
+<%= link_to @post.text, @post %>
+<%= @post.image_id %>
+ <%= link_to 'Destroy', admins_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' } %>
+<div><%= render 'post_comment' ,post: @post %></div>

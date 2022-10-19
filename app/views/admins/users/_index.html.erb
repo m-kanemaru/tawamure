@@ -11,8 +11,7 @@
       <tr>
         <td><%= image_tag user.get_image_id, size: '50x50' %></td>
         <td><%= user.nickname %></td>
-        <td><%= render "publics/relationships/btn", user: user %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Show', admins_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>

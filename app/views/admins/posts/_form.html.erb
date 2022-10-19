@@ -1,0 +1,13 @@
+<%= form_with model: post,local:true do |f| %>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image_id %>
+  </div>
+  <div>
+    <%= f.label :sentence %>
+    <%= f.text_area :text %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
