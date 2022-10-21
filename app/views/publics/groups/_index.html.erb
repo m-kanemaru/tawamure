@@ -14,7 +14,7 @@
                 <td><%= link_to group.title, group_path(group) %></td>
                 <td><%= group.introduction %></td>
                 <td>
-                    <%= group.users.count %>
+                    <%= group.user_groups.count(:user_id) %>
                 </td>
             </tr>
           <% end %>
