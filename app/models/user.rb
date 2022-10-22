@@ -16,9 +16,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :user_rooms
+  
   has_many :chats
   
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
