@@ -6,5 +6,5 @@
 <%= link_to @post.text, @post %>
 <%= @post.image_id %>
 <%= link_to 'edit', edit_post_path(@post) %>
-<div id="new-comment" ><%= render 'publics/post_comments/comment' ,post: @post, post_comment: @post_comment %></div>
-<div id="comment-area" ><%= render 'publics/post_comments/index' ,post: @post %></div>
+<div ><%= render 'publics/post_comments/comment' ,post: @post, post_comment: @post_comment %></div>
+<div id="comments_area" ><%= render 'publics/post_comments/index' ,post: @post %></div>

@@ -14,6 +14,7 @@
             <%= post.user.nickname %>
         <% end %></td>
         <td><%= link_to post.text, post_path(post) %></td>
+      <td id="favorite_buttons_<%= post.id %>"><%= render 'publics/post_favorites/favorite' ,post: post %></td>
       </tr>
     <% end %>
   </tbody>

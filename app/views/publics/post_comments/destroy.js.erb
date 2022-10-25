@@ -1,2 +1,2 @@
-$("#comments-area").html("<%= j(render "index", post: @comment.post)%>");
-$("#comments-count").html("<%= j(render 'comment_count', post: @comment.post) %>");
+$("#comments_area").html("<%= j(render 'publics/post_comments/index', post: @comment.post) %>");
+$("#comments_count").html("<%= j(render 'publics/post_comments/comment_count',post: @comment.post ) %>");

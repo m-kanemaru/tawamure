@@ -16,8 +16,8 @@
           <% end %>
         <% end %>
         <td><%= post.text %></td>
-        <td><%= render 'publics/post_favorites/favorite' ,post: post %></td>
-        <td><%= render 'publics/post_comments/comment_count' ,post: post %></td>
+        <td id="favorite_buttons_<%= post.id %>"><%= render 'publics/post_favorites/favorite' ,post: post %></td>
+        <td id="comments_area"><%= render 'publics/post_comments/comment_count' ,post: post %></td>
         <td><%= link_to 'Show', post %></td>
       </tr>
     <% end %>
