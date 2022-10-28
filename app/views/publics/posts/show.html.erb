@@ -1,10 +1,46 @@
-<h2>Post detail</h2>
-<%= link_to(@post.user) do %>
-<%= image_tag @post.user.get_image_id, size:"100x100" %><br>
-<%= @post.user.nickname %>
-<% end %>
-<%= link_to @post.text, @post %>
-<%= @post.image_id %>
-<%= link_to 'edit', edit_post_path(@post) %>
-<div ><%= render 'publics/post_comments/comment' ,post: @post, post_comment: @post_comment %></div>
-<div id="comments_area" ><%= render 'publics/post_comments/index' ,post: @post %></div>
+<div class='container px-5 px-sm-0'>
+    <div class='row'>
+        <div class='col-md-3'>
+            <h2>User</h2>
+            <%= render 'publics/users/user', user: @post.user %>
+            <%= link_to 'new', new_post_path %>
+        </div>
+        
+        <div class='col-md-8 offset-md-1'>
+            <div class="card-list-container">
+                <div class="card w-60 mx-auto mt-4 shadow-lg">
+                    <% if @post.image_id.present?%>
+                        <%= image_tag @post.image_id, class:"card-img-top" %>
+                    <% end %>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-text">
+                                    <p class="text-dark link-light"><%= @post.text %></p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-3", id="favorite_buttons_<%= @post.id %>"><%= render 'publics/post_favorites/favorite' ,post: @post %></div>
+                                    <div class="col-md-3", id="comments_count"><%= render 'publics/post_comments/comment_count' ,post: @post %></div>
+                                    <% if current_user == @post.user %>
+                                        <div class="col-md-3">
+                                            <%= link_to 'edit', edit_post_path(@post) %>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="comments_area">
+                <%= render 'publics/post_comments/index' ,post: @post %>
+            </div>
+            <%= render 'publics/post_comments/comment' ,post: @post, post_comment: @post_comment %>
+        </div>
+    </div>
+</div>

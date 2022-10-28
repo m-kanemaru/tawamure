@@ -1,0 +1,5 @@
+<%= form_with model: chat, local: false do |f| %>
+    <%= f.text_field :message,class: "chat_textarea" %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit %>
+<% end %>

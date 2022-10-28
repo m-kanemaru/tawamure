@@ -1,9 +1,37 @@
-<h2>Post detail</h2>
-<%= link_to(@post.user) do %>
-<%= image_tag @post.user.get_image_id, size:"100x100" %><br>
-<%= @post.user.nickname %>
-<% end %>
-<%= link_to @post.text, @post %>
-<%= @post.image_id %>
- <%= link_to 'Destroy', admins_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' } %>
-<div><%= render 'post_comment' ,post: @post %></div>
+<div class='container px-5 px-sm-0'>
+    <div class='row'>
+        <div class='col-md-3'>
+            <h2>User</h2>
+            <%= render 'admins/users/user', user: @post.user %>
+        </div>
+        <div class='col-md-8 offset-md-1'>
+            <div class="card-list-container">
+                <div class="card w-60 mx-auto mt-4 shadow-lg">
+                    <% if @post.image_id.present?%>
+                        <%= image_tag @post.image_id, class:"card-img-top" %>
+                    <% end %>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-text">
+                                    <p class="text-dark link-light"><%= @post.text %></p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-2">♥<%= @post.post_favorites.count %></div>
+                                    <div class="col-md-3", id="comments_count"><%= render 'publics/post_comments/comment_count' ,post: @post %></div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                        <%= link_to 'Destroy',  admins_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div><%= render 'post_comment' ,post: @post %></div>
+        </div>
+    </div>
+</div>

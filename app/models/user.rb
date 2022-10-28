@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   
   has_many :user_groups
-  has_many :groups, through: :user_groups
+  has_many :groups, through: :user_groups,dependent: :destroy
   has_many :user_rooms
   
   has_many :chats

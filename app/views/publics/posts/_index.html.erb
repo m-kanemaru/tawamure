@@ -9,14 +9,26 @@
   <tbody>
     <% posts.each do |post| %>
       <tr>
-        <td><% link_to user_path(post.user) do %>
-            <%= image_tag post.user.get_image_id, size:'50x50' %></td>
+        <td>
+          <%= link_to user_path (post.user) do %>
+            <%= image_tag post.user.get_image_id, size:'50x50' %><br>
             <%= post.user.nickname %>
-        <% end %></td>
-        <td><%= link_to post.text, post_path(post) %></td>
-      <td id="favorite_buttons_<%= post.id %>"><%= render 'publics/post_favorites/favorite' ,post: post %></td>
+          <% end %>
+        </td>
+        <td>
+            <%= link_to post_path(post) do %>
+              <% if post.image_id.present?%>
+                <td><%= image_tag post.image_id, size: '50x50' %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            <%= post.text %>
+          <% end %>
+        </td>
+        <td id="favorite_buttons_<%= post.id %>"><%= render 'publics/post_favorites/favorite' ,post: post %></td>
+        <td id="comments_area"><%= render 'publics/post_comments/comment_count' ,post: post %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'new', new_post_path %>
+

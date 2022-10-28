@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     
     resources :groups, only: [:new, :index,:show,:edit,:create,:destroy,:update] do
       get "join" => "groups#join"
+      delete "all_destroy" => 'groups#all_destroy'
     end
     
     get 'chat/:id' => 'chats#show', as: 'chat'
@@ -45,6 +46,9 @@ Rails.application.routes.draw do
     
     resources :groups, only: [:index,:show,:edit,:destroy,:update]
     
+    resources :groups, only: [:new, :index,:show,:edit,:create,:destroy,:update] do
+      delete "all_destroy" => 'groups#all_destroy'
+    end
   
   end
   

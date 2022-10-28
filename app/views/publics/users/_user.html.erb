@@ -1,0 +1,33 @@
+<table class='table'>
+  <tr><%= image_tag user.get_image_id, size:'100x100', class:'rounded-circle' %></tr>
+  <tr>
+	  <th><%= user.nickname %></th>
+	  <th></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th></th>
+	</tr>
+  <tr> 
+	   <th><%= user.introduction %></th>
+	   <th></th>
+  </tr>
+  <tr>
+    <th>フォロー</th>
+    <th><%= link_to user.followings.count, user_followings_path(user) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to user.followers.count, user_followers_path(user) %></th>
+  </tr>
+</table>
+　
+<div class='row'>
+  <% if current_user != user %>
+    <div id="follow_btn_<%= user.id %>"><%= render "publics/relationships/btn",user: user %></div>
+  <% else %>
+    <%= link_to user_path(user), class: "btn btn-outline-secondary btn-block user_#{user.id}" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  <% end %>
+</div>

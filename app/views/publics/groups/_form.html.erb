@@ -1,17 +1,17 @@
 <%= form_with model: group, local: true do |f| %>
   <div class="form-group">
-    <%= f.label :グループ名 %>
+    <%= f.label :group %>
     <%= f.text_field :title %>
   </div>
 
   <div class="form-group">
-    <%= f.label :紹介文 %>
+    <%= f.label :introduction %>
     <%= f.text_area :introduction %>
   </div>
 
   <div class="form-group">
-    <%= f.label :グループ画像 %>
-    <%= f.file_field :image_id %>
+    <%= f.label :image %>
+    <%= f.file_field :image_id, accept: 'image/*' %>
   </div>
 
   <div class="form-group">

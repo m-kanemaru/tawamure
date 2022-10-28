@@ -12,6 +12,7 @@ class Publics::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @users = @group.users
   end
     
   def join
@@ -42,16 +43,23 @@ class Publics::GroupsController < ApplicationController
       render "edit"
     end
   end
+  
   def destroy
     @group = Group.find(params[:id])
     @group.users.delete(current_user)
+    redirect_to groups_path
+  end
+  
+  def all_destroy
+    @group = Group.find(params[:group_id])
+    @group.destroy
     redirect_to groups_path
   end
 
   private
 
   def group_params
-    params.require(:group).permit(:title, :introduction, :image)
+    params.require(:group).permit(:title, :introduction, :image_id)
   end
 
   def ensure_correct_user

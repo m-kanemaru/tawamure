@@ -1,20 +1,31 @@
-<table>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% posts.each do |post| %>
-      <tr>
-        <td><% link_to admins_user_path(post.user) do %>
-            <%= image_tag post.user.get_image_id, size:'50x50' %></td>
-            <%= post.user.nickname %>
-        <% end %></td>
-        <td><%= link_to post.text, admins_post_path(post) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card-list-container">
+  <% posts.each do |post| %>
+    <div class="card w-60 mx-auto mt-4 shadow-lg">
+      <% if post.image_id.present?%>
+        <%= link_to admins_post_path(post) do %>
+          <%= image_tag post.image_id, class:"card-img-top" %>
+        <% end %>
+      <% end %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <%= link_to admins_user_path(post.user) do%>
+              <%= image_tag post.user.get_image_id, size: '50x50', class:"mt-3 rounded-circle" %>
+            <% end %>
+          </div>
+          <div class="col-10">
+            <div class="card-text">
+              <p><%= post.text %></p>
+            </div>
+            <div class="row">
+              <div class="col-md-2">♥<%= post.post_favorites.count %></div>
+              <div class="col-md-4", id="comments_count"><%= render 'publics/post_comments/comment_count' ,post: post %></div>
+              <div class="col-md-2 offset-md-4">
+                <%= link_to "show",  admins_post_path(post) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>

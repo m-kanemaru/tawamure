@@ -1,18 +1,37 @@
-<h2>Group Detail</h2>
-<table>
-    <tr>
-        <td><%= image_tag @group.get_image_id, size:'50x50' %></td>
-        <td><%= @group.title %></td>
-        <td><%= @group.introduction %></td>
-        <td>
-            <% if @group.owner_id == current_user.id %>
-                <%= link_to 'Edit', edit_group_path(@group) %>
-            <% elsif @group.users.include?(current_user) %>
-                <%= link_to 'Leave this group', group_path(@group), method: :delete %>
-            <% else %>
-                <%= link_to 'Join this group', group_join_path(@group) %>
-            <% end %>
-        </td>
-    </tr>
-</table>
-加入とメンバー
+<div class='container px-5 px-sm-0'>
+    <div class='row mt-5'>
+        <div class='col-md-5'>
+            <table class='table'>
+                <tr>
+                    <%= image_tag @group.get_image_id,  class:"card-img-top" %>
+                </tr>
+                <tr>
+                    <th><%= @group.title %></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>introduction</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th><%= @group.introduction %></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <% if @group.owner_id == current_user.id %>
+                        <th><%= link_to 'Edit', edit_group_path(@group) %></th>
+                        <th><%= link_to 'Destroy', group_all_destroy_path(@group), method: :delete, data: { confirm: '本当に消しますか？' } %></th>
+                    <% elsif @group.users.include?(current_user) %>
+                        <th><%= link_to '外れる', group_path(@group), method: :delete %></th>
+                    <% else %>
+                        <th><%= link_to '参加', group_join_path(@group) %></th>
+                    <% end %>
+                </tr>
+            </table>
+        </div>
+        <div class='col-md-7'>
+            <%= render 'publics/users/index' ,users: @users %>
+        </div>
+    </div>
+</div>
+

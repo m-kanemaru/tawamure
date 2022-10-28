@@ -5,7 +5,7 @@ class Post < ApplicationRecord
     has_many :post_favorites, dependent: :destroy
     has_many :post_comments, dependent: :destroy
     
-     has_many_attached :image_id
+     has_one_attached :image_id
     
     def favorited_by?(user)
         post_favorites.exists?(user_id: user.id)
