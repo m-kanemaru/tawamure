@@ -3,10 +3,11 @@
         <div class='col-md-3'>
             <h2>User</h2>
             <%= render 'publics/users/user', user: current_user %>
-            <%= link_to 'new', new_post_path %>
+            <%= render 'publics/users/form', user: current_user %>
         </div>
         <div class='col-md-8 offset-md-1'>
-            <h2>投稿</h2>
+            <%= render 'searches/search' %>
+            <h2>投稿一覧</h2>
             <%= render 'publics/users/post', posts: @posts %>
         </div>
     </div>

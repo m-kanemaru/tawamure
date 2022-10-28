@@ -1,5 +1,6 @@
-<%= form_with model: chat, local: false do |f| %>
-    <%= f.text_field :message,class: "chat_textarea" %>
+<%= form_with model: chat do |f| %>
+    <%= f.text_area :message, rows: '2', class: "w-100 chat_textarea" %>
     <%= f.hidden_field :room_id %>
-    <%= f.submit %>
+    <%= f.submit '送信', class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+<!-- 非同期通信は未実装-->

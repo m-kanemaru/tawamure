@@ -3,7 +3,7 @@
         <div class='col-md-3'>
             <h2>User</h2>
             <%= render 'publics/users/user', user: @post.user %>
-            <%= link_to 'new', new_post_path %>
+            <%= render 'publics/users/form', user: @post.user %>
         </div>
         
         <div class='col-md-8 offset-md-1'>
@@ -25,10 +25,14 @@
                                     <div class="col-md-3", id="comments_count"><%= render 'publics/post_comments/comment_count' ,post: @post %></div>
                                     <% if current_user == @post.user %>
                                         <div class="col-md-3">
-                                            <%= link_to 'edit', edit_post_path(@post) %>
+                                            <%= link_to edit_post_path(@post) do %>
+                                                <i class="fas fa-cogs"></i>
+                                            <% end %>
                                         </div>
                                         <div class="col-md-3">
-                                            <%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
+                                            <%= link_to @post, method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                                                <i class="fas fa-trash-alt"></i>
+                                            <% end %>
                                         </div>
                                     <% end %>
                                 </div>

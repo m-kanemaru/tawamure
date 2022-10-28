@@ -19,12 +19,20 @@
                 </tr>
                 <tr>
                     <% if @group.owner_id == current_user.id %>
-                        <th><%= link_to 'Edit', edit_group_path(@group) %></th>
-                        <th><%= link_to 'Destroy', group_all_destroy_path(@group), method: :delete, data: { confirm: '本当に消しますか？' } %></th>
+                        <th>
+                            <%= link_to edit_group_path(@group) do %>
+                            <i class="fas fa-cogs"></i>
+                            <% end %>
+                        </th>
+                        <th>
+                            <%= link_to group_all_destroy_path(@group), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                                <i class="fas fa-trash-alt"></i>
+                            <% end %>
+                        </th>
                     <% elsif @group.users.include?(current_user) %>
-                        <th><%= link_to '外れる', group_path(@group), method: :delete %></th>
+                        <th><%= link_to 'フォロー中', group_path(@group), method: :delete %></th>
                     <% else %>
-                        <th><%= link_to '参加', group_join_path(@group) %></th>
+                        <th><%= link_to 'フォロー', group_join_path(@group) %></th>
                     <% end %>
                 </tr>
             </table>

@@ -13,7 +13,9 @@
         </td>
         <td><%= post_comment.comment %></td>
         <td>
-          <%= link_to "Destroy", post_post_comment_path(post,post_comment), remote:true, method: :delete %>
+          <%= link_to post_post_comment_path(post,post_comment), remote:true, method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>

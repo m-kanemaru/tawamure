@@ -12,7 +12,7 @@
                 <h3><%= link_to group.title, group_path(group) %></h3>
               </div>
               <div class="col-4">
-                mender <%= group.user_groups.count(:user_id) %>
+                <i class="fas fa-users"></i><%= group.user_groups.count(:user_id) %>
               </div>
               <div class="col-12">
                 <div class="card-text">

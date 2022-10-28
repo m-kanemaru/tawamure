@@ -21,13 +21,3 @@
     <th><%= link_to user.followers.count, user_followers_path(user) %></th>
   </tr>
 </table>
-　
-<div class='row'>
-  <% if current_user != user %>
-    <div id="follow_btn_<%= user.id %>"><%= render "publics/relationships/btn",user: user %></div>
-  <% else %>
-    <%= link_to user_path(user), class: "btn btn-outline-secondary btn-block user_#{user.id}" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  <% end %>
-</div>

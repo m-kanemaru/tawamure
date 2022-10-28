@@ -1,11 +1,21 @@
 <% chats.each do |chat| %>
-    <% if chat.user_id == current_user.id %>
-        <div class="col-md-11", style="text-align: left;">
-                <%= chat.message %>
-        </div>
+    <% if chat.user_id != current_user.id %>
+        <tr>
+            <th>
+               <p style="text-align: left;">
+                    <%= chat.message %>
+                </p>
+            </th>
+            <th></th>
+        </tr>
     <% else %>
-        <div class="col-md-4 offset-md-7", style="text-align: right;">
-            <%= chat.message %>
-        </div>
+        <tr>
+            <th></th>
+            <th>
+                <p style="text-align: right;">
+                    <%= chat.message %>
+                </p>
+            </th>
+        </tr>
     <% end %>
 <% end %>

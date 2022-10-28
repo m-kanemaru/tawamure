@@ -1,6 +1,15 @@
 <% if current_user == user %>
-    <%= link_to 'edit', edit_user_path(user) %>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <%= link_to edit_user_path(user), class:'btn btn-outline-secondary btn-block' do %>
+        <i class="fas fa-cogs"></i>
+    <% end %>
+    <%= link_to destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary btn-block' do %>
+        <i class="fas fa-sign-out-alt"></i>ログアウト
+    <% end %>
 <% else %>
-    <%= link_to 'chatを始める', chat_path(user.id)%>
+    <div id="follow_btn_<%= user.id %>", class="btn btn-outline-secondary btn-block">
+        <%= render "publics/relationships/btn",user: user %>
+    </div>
+    <%= link_to chat_path(user.id), class:'btn btn-outline-secondary btn-block' do %>
+        <i class="fab fa-rocketchat"></i> chatを始める
+    <% end %>
 <% end %>
