@@ -41,6 +41,14 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="tag-box">
+                <% @post.tags.each do |tag| %>
+                    <span class="label"><%= tag.name %></span>
+                <% end %>
+            </div>
+            <p class="text-dark link-light">本文の感情分析スコア<%= @post.score %></p>
+            
             <div id="comments_area">
                 <%= render 'publics/post_comments/index' ,post: @post %>
             </div>

@@ -8,7 +8,16 @@ class Publics::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    
+    @post.score = Language.get_data(post_params[:text])
+    
     if @post.save
+      
+      tags = Vision.get_image_data(@post.image_id)
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
+      
       redirect_to post_path(@post),notice:"投稿成功"
     else
       render :new
