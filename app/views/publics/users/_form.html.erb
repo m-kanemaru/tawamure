@@ -3,7 +3,7 @@
     <div id="follow_btn_<%= user.id %>", class="btn btn-outline-secondary btn-block"><%= render "publics/relationships/btn",user: user %></div>
   <% else %>
     <%= link_to user_path(user), class: "btn btn-outline-secondary btn-block user_#{user.id}" do %>
-      <i class="fas fa-user"></i>
+      <i class="fas fa-user"></i>マイページ
     <% end %>
     <%= link_to new_post_path, class: "btn btn-outline-secondary btn-block mt-2" do %>
      <i class="fas fa-plus"></i>新規投稿

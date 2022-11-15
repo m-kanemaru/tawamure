@@ -1,15 +1,12 @@
 <table class='table'>
-  <tr><%= image_tag user.get_image_id, size:'100x100', class:'rounded-circle' %></tr>
   <tr>
-	  <th><%= user.nickname %></th>
+    <th><%= image_tag user.get_image_id, size:'100x100', class:'rounded-circle' %><br>
+	  <%= user.nickname %></th>
 	  <th></th>
   </tr>
   <tr>
-	  <th>introduction</th>
-	  <th></th>
-	</tr>
-  <tr> 
-	   <th><%= user.introduction %></th>
+	  <th>紹介文<br>
+	   <%= user.introduction %></th>
 	   <th></th>
   </tr>
   <tr>

@@ -29,6 +29,9 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   
+  has_many :active_notifications, foreign_key:"visitor_id", class_name: "Notification", dependent: :destroy
+  has_many :passive_notifications, foreign_key:"visited_id", class_name: "Notification", dependent: :destroy
+  
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -45,17 +48,7 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
   
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @user = User.where("name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @user = User.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @user = User.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @user = User.where("name LIKE?","%#{word}%")
-    else
-      @user = User.all
-    end
+  def self.looks(word)
+    @user = User.where("name LIKE?","%#{word}%")
   end
 end

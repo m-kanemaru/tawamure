@@ -10,13 +10,15 @@
   <tbody>
     <% users.each do |user| %>
       <% if current_user != user %>
-        <tr>
-          <td><%= image_tag user.get_image_id, size: '100x100',class:'rounded-circle' %></td>
-          <td><%= user.nickname %></td>
-          <td><%= user.introduction %></td>
-          <td id="follow_btn_<%= user.id %>"><%= render "publics/relationships/btn",user: user %></td>
-          <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-        </tr>
+       <% if user.is_deleted == false %>
+          <tr>
+            <td><%= image_tag user.get_image_id, size: '100x100',class:'rounded-circle' %></td>
+            <td><%= user.nickname %></td>
+            <td><%= user.introduction %></td>
+            <td id="follow_btn_<%= user.id %>"><%= render "publics/relationships/btn",user: user %></td>
+            <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>

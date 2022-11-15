@@ -3,18 +3,16 @@
         <div class='col-md-5'>
             <table class='table'>
                 <tr>
-                    <%= image_tag @group.get_image_id,  class:"card-img-top" %>
+                    <th>
+                        <h2><%= @group.title %></h2>
+                        <%= image_tag @group.get_image_id,  class:"card-img-top" %>
+                        <th></th>
+                    </th>
                 </tr>
                 <tr>
-                    <th><%= @group.title %></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>introduction</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th><%= @group.introduction %></th>
+                    <th>
+                        紹介文<br>
+                        <%= @group.introduction %></th>
                     <th></th>
                 </tr>
                 <tr>

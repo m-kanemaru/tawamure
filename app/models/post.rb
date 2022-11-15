@@ -6,23 +6,36 @@ class Post < ApplicationRecord
     has_many :post_comments, dependent: :destroy
     has_many :tags, dependent: :destroy
     
+    # def create_notification_comment!(current_user, post_comment_id)
+    #     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
+    #     temp_ids.each do |temp_id|
+    #         save_notification_comment!(current_user, post_comment_id, temp_id['user_id'])
+    #     end
+    #     save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
+    # end
+
+    # def save_notification_comment!(current_user, post_comment_id, visited_id)
+    #     notification = current_user.active_notifications.new(
+    #         post_id: id,
+    #         post_comment_id: post_comment_id,
+    #         visited_id: visited_id,
+    #         action: 'comment'
+    #     )
+    #     if notification.visiter_id == notification.visited_id
+    #         notification.checked = true
+    #     end
+    #     notification.save
+    #     if notification.valid?
+    #     end
+    # end
+    
      has_one_attached :image_id
     
     def favorited_by?(user)
         post_favorites.exists?(user_id: user.id)
     end
     
-    def self.looks(search, word)
-        if search == "perfect_match"
-            @post = Post.where("title LIKE?","#{word}")
-        elsif search == "forward_match"
-            @post = Post.where("title LIKE?","#{word}%")
-        elsif search == "backward_match"
-            @post = Post.where("title LIKE?","%#{word}")
-        elsif search == "partial_match"
-            @post = Post.where("title LIKE?","%#{word}%")
-        else
-            @post = Post.all
-        end
+    def self.looks(word)
+        @post = Post.where("text LIKE?","%#{word}%")
     end
 end

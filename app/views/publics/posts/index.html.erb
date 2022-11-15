@@ -6,9 +6,17 @@
             <%= render 'publics/users/form', user: current_user %>
         </div>
         <div class='col-md-8 offset-md-1'>
-            <%= render 'searches/search' %>
+            <%= render 'searches/search', range: Post %>
             <h2>投稿一覧</h2>
-            <%= render 'publics/users/post', posts: @posts %>
+            <% if @user.followings.count != 0 %>
+                <%= render 'publics/posts/index', posts: @posts %>
+            <% else %>
+                <div class='mt-5'>
+                    <p>フォローしているユーザーはいません</p>
+                    <%= link_to "ユーザーを探す", users_path %><br>
+                    <%= link_to "カテゴリから探す", groups_path %>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>

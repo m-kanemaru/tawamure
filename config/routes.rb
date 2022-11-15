@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
     
+    resources :notifications, only: [:index, :update]
+    
   end
 
 

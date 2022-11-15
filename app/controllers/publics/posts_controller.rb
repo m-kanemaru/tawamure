@@ -25,7 +25,8 @@ class Publics::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(user_id: [*current_user.following_ids])
+    @user = current_user
   end
 
   def show

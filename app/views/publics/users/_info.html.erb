@@ -1,6 +1,6 @@
 <% if current_user == user %>
     <%= link_to edit_user_path(user), class:'btn btn-outline-secondary btn-block' do %>
-        <i class="fas fa-cogs"></i>
+        <i class="fas fa-cogs"></i>編集
     <% end %>
     <%= link_to destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary btn-block' do %>
         <i class="fas fa-sign-out-alt"></i>ログアウト
