@@ -9,9 +9,9 @@ class User < ApplicationRecord
   def get_image_id
     (image_id.attached?) ? image_id : 'no_image.jpg'
   end
-  #validates :nickname, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  #validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  #validates :introduction, length: {maximum: 50}
+  validates :nickname, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, length: {maximum: 50}
   
   has_many :posts, dependent: :destroy
   has_many :post_favorites, dependent: :destroy

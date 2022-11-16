@@ -42,12 +42,26 @@
                 </div>
             </div>
             
-            <div class="tag-box">
-                <% @post.tags.each do |tag| %>
-                    <span class="label"><%= tag.name %></span>
-                <% end %>
-            </div>
-            <p class="text-dark link-light">本文の感情分析スコア<%= @post.score %></p>
+            <% if @post.image_id.present?%>
+                <div class="tag-box mt-4">
+                    <h6>画像タグ</h6>
+                    <div class="row">
+                        <% @post.tags.each do |tag| %>
+                         <div class="col-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="card-text">
+                                        <span class="label">
+                                                <%= tag.name %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
             
             <div id="comments_area">
                 <%= render 'publics/post_comments/index' ,post: @post %>

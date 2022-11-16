@@ -1,16 +1,19 @@
 <%= form_with model: group, local: true do |f| %>
+
+  <%= render "publics/shared/error_messages", resource: group %>
+
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :名前 %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :introduction %>
+    <%= f.label :説明文 %>
     <%= f.text_area :introduction, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :image %>
+    <%= f.label :表示画像 %>
     <%= f.file_field :image_id, accept: 'image/*', class: "form-control-file" %>
   </div>
 

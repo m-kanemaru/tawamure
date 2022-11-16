@@ -1,9 +1,35 @@
-<%#= render 'searches/search' %>
-<h2>Results index</h2>
-  <!--検索対象モデルがUserの時 -->
+<div class="container">
+  <div class="mt-2">
+    <h2>検索ワード</h2>
+    <h2>"<%= @word %>"</h2>
+  </div>
+  <div class="w-25 p-3">
+    <%= render 'searches/search', range: Post %>
+  </div>
   <% if @range == "User" %>
-      <%= render 'publics/users/index',users: @users %>
-  <% else %>
+    <%= link_to "投稿を検索",search_path(word: @word,range: Post) %><br>
+    <%= link_to "カテゴリを検索",search_path(word: @word,range: Group) %><br>
+    <%= link_to "画像タグで検索",search_path(word: @word,range: Tag) %>
+    <h2 class="mt-3">ユーザーの検索結果 </h2>
+    <%= render 'publics/users/index',users: @users %>
+  <% elsif @range == "Post" %>
+    <%= link_to "ユーザーを検索",search_path(word: @word,range: User) %><br>
+    <%= link_to "カテゴリを検索",search_path(word: @word,range: Group) %><br>
+    <%= link_to "画像タグで検索",search_path(word: @word,range: Tag) %>
+    <h2 class="mt-3">投稿の検索結果</h2>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-    <%= render 'publics/users/post',posts: @posts %>
+    <%= render 'publics/posts/index',posts: @posts %>
+  <% elsif @range == "Group" %>
+    <%= link_to "投稿を検索",search_path(word: @word,range: Post) %><br>
+    <%= link_to "ユーザーを検索",search_path(word: @word,range: User) %><br>
+    <%= link_to "画像タグで検索",search_path(word: @word,range: Tag) %>
+    <h2 class="mt-3">カテゴリの検索結果</h2>
+    <%= render 'publics/groups/index',groups: @groups %>
+  <% else %>
+    <%= link_to "投稿を検索",search_path(word: @word,range: Post) %><br>
+    <%= link_to "ユーザーを検索",search_path(word: @word,range: User) %><br>
+    <%= link_to "カテゴリを検索",search_path(word: @word,range: Group) %>
+    <h2 class="mt-3">投稿の検索結果(検索ワードは英語のみ)</h2>
+    <%= render 'publics/posts/index',posts: @posts %>
   <% end %>
+</div>

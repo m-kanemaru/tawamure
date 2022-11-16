@@ -10,4 +10,8 @@ class Group < ApplicationRecord
 
     validates :title, presence: true
     validates :introduction, presence: true
+    
+    def self.looks(word)
+        @group = Group.where("title LIKE?","%#{word}%")
+    end
 end

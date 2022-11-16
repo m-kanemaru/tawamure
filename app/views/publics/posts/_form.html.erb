@@ -1,12 +1,13 @@
 <%= form_with model: post,local:true do |f| %>
+  <%= render "publics/shared/error_messages", resource: post %>
 
   <div class="form-group">
-    <%= f.label :image %>
+    <%= f.label :投稿画像 %>
     <%= f.file_field :image_id, accept: 'image/*', class: "form-control-file" %>
   </div>
   
   <div class="form-group">
-    <%= f.label :sentence %>
+    <%= f.label :投稿内容 %>
     <%= f.text_area :text, class: 'form-control' %>
   </div>
   

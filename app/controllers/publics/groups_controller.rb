@@ -7,7 +7,7 @@ class Publics::GroupsController < ApplicationController
   end
   
   def index
-    @groups = Group.all
+    @groups = Group.page(params[:page])
   end
 
   def show

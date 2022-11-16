@@ -25,7 +25,7 @@ class Publics::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: [*current_user.following_ids])
+    @posts = Post.where(user_id: [*current_user.following_ids,current_user.id]).page(params[:page])
     @user = current_user
   end
 
@@ -41,6 +41,16 @@ class Publics::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      
+      @post.tags.each do |tag|
+        tag.destroy
+      end
+        
+      tags = Vision.get_image_data(@post.image_id)
+        tags.each do |tag|
+          @post.tags.create(name: tag)
+        end
+      
       redirect_to post_path(@post),notice:"投稿成功"
     else
       render :edit
