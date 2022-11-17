@@ -4,16 +4,6 @@
             <h2>User</h2>
             <%= render 'publics/users/user', user: @user %>
             <%= render 'info', user: @user %>
-            
-            <%# if unchecked_notifications.any? %>
-                <% if @user == current_user %>
-                    <%= link_to notifications_path, remote: true do %>
-                        <i class="fa fa-bell fa-2x position-absolute top-0 end-0 translate-middle" style="color: red;" size: "200x200"><br><span style="font-size:18px;">click!</span></i>
-                    <% end %>
-                <% end %>
-            <%# end %>
-            <div id="notification_area">
-            </div>
         </div>
         <div class='col-md-8 offset-md-1'>
             <h2>投稿</h2>
