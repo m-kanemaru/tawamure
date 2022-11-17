@@ -27,7 +27,9 @@
 
 
 ## 設計書
-<...>
+- ER図:https://app.diagrams.net/#G1q_NIzPSgYd6MypGNBtfaWZKyPg3izeVh
+- 画面遷移図：https://app.diagrams.net/#G1CC4_FQinwRV1snjjXwxK9tPlRfKTCnta
+- テーブル定義書:https://docs.google.com/spreadsheets/d/1Afh9-50PLoUN9Q7BJFgbdXSHUPUlXyNigM-HhdeGiCc/edit#gid=1524920002
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -37,4 +39,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です。
+- 写真AC:https://www.photo-ac.com/main/guide/ (サイト内のユーザー、カテゴリ、投稿画像に使用)
