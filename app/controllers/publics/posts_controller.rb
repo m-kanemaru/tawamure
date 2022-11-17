@@ -13,9 +13,11 @@ class Publics::PostsController < ApplicationController
     
     if @post.save
       
-      tags = Vision.get_image_data(@post.image_id)
-      tags.each do |tag|
-        @post.tags.create(name: tag)
+      if @post.image_id.present?
+        tags = Vision.get_image_data(@post.image_id)
+        tags.each do |tag|
+          @post.tags.create(name: tag)
+        end
       end
       
       redirect_to post_path(@post),notice:"投稿成功"
@@ -40,16 +42,20 @@ class Publics::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
+    @old_tags = Tag.joins(:post).where(post_id: @post.id)
+    
+    @old_tags.each do |tag|
+      tag.destroy
+    end
+    
     if @post.update(post_params)
-      
-      @post.tags.each do |tag|
-        tag.destroy
-      end
         
-      tags = Vision.get_image_data(@post.image_id)
+      if @post.image_id.present?
+        tags = Vision.get_image_data(@post.image_id)
         tags.each do |tag|
           @post.tags.create(name: tag)
         end
+      end
       
       redirect_to post_path(@post),notice:"投稿成功"
     else

@@ -12,7 +12,7 @@ class Publics::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @users = @group.users
+    @users = @group.users.page(params[:page])
   end
     
   def join
