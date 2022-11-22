@@ -5,6 +5,7 @@
     <%= link_to destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary btn-block' do %>
         <i class="fas fa-sign-out-alt"></i>ログアウト
     <% end %>
+    <%= link_to "通知", notifications_path %>
 <% else %>
     <div id="follow_btn_<%= user.id %>", class="btn btn-outline-secondary btn-block">
         <%= render "publics/relationships/btn",user: user %>
