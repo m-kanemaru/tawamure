@@ -1,7 +1,9 @@
-<div class="notification-view">
-  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>
-  <br>
-  <% if !@commentpost.nil? %>
-    <p class="notification-comment"><%= @commentpost %></p>
-  <% end %>
-</div>
+<% if notification.checked == false %>
+<%= notification.checked %>
+  <div class="notification-view">
+    <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>
+    <%= link_to notification_path(notification), method: :patch do %>
+      <i class="fas fa-check"></i>確認済み
+    <% end %>
+  </div>
+<% end %>

@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
     
-    resources :notifications, only: [:index, :destroy]
+    resources :notifications, only: [:index, :update] do
+      patch "all_update" => 'notifications#all_update'
+    end
     
   end
 
