@@ -1,0 +1,12 @@
+<h3 class="text-center">通知 <%= @notifications.where(checked: false).count %>件</h3>
+
+<% if @notifications.where(checked: false).count != 0 %>
+    <%= link_to notification_all_update_path(@notifications), method: :patch do %>
+       <i class="fas fa-bell"></i>全て確認
+    <% end %>
+    <div class="notification-index">
+        <%= render @notifications %>
+    </div>
+<% else %>
+    <p>通知はありません</p>
+<% end %>
