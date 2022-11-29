@@ -22,6 +22,7 @@
                         <%= render 'room', chats: @chats %>
                     </tbody>
                 </table>
+                <%= paginate @chats %>
                 <%= render 'form', chat: @chat %>
             </div>
         </div>
