@@ -14,14 +14,14 @@ class Publics::ChatsController < ApplicationController
             UserRoom.create(user_id: current_user.id, room_id: @room.id)
         end
         
-        @chats = @room.chats.page(params[:page])
+        @chats = @room.chats.order(created_at: :desc).page(params[:page])
         @chat = Chat.new(room_id: @room.id)
     end
 
     def create
         @chat = current_user.chats.new(chat_params)
         @chat.save
-        @chats = @chat.room.chats.page(params[:page])
+        @chats = @chat.room.chats.order(created_at: :desc).page(params[:page])
         
         # @commentpost=@comment.post
         # @commentpost.create_notification_comment!(current_user, @comment.id)
