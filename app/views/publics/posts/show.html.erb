@@ -24,9 +24,10 @@
                                     <div class="col-md-3", id="favorite_buttons_<%= @post.id %>"><%= render 'publics/post_favorites/favorite' ,post: @post %></div>
                                     <div class="col-md-3", id="comments_count"><%= render 'publics/post_comments/comment_count' ,post: @post %></div>
                                     <% if current_user == @post.user %>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 post">
                                             <%= link_to edit_post_path(@post) do %>
                                                 <i class="fas fa-cogs"></i>
+                                                <span class="edit">編集</span>
                                             <% end %>
                                         </div>
                                         <div class="col-md-3">
