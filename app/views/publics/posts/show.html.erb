@@ -30,9 +30,10 @@
                                                 <span class="edit">編集</span>
                                             <% end %>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 post">
                                             <%= link_to @post, method: :delete, data: { confirm: '本当に消しますか？' } do %>
                                                 <i class="fas fa-trash-alt"></i>
+                                                <span class="edit">削除</span>
                                             <% end %>
                                         </div>
                                     <% end %>
