@@ -1,6 +1,6 @@
 class Publics::PostsController < ApplicationController
   before_action :authenticate_user!
-  #before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   def new
     @post = Post.new
   end
@@ -75,11 +75,11 @@ class Publics::PostsController < ApplicationController
     params.require(:post).permit(:text, :image_id)
   end
   
-  # def ensure_correct_user
-  #   @post = Post.find(params[:id])
-  #   unless @Post.user == current_user
-  #     redirect_to posts_path
-  #   end
-  # end
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    unless @post.user_id == current_user
+      redirect_to posts_path
+    end
+  end
   
 end
