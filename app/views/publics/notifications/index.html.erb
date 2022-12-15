@@ -4,9 +4,24 @@
     <%= link_to notification_all_update_path(@notifications), method: :patch do %>
        <i class="fas fa-bell"></i>全て確認
     <% end %>
-    <div class="notification-index">
-        <%= render @notifications %>
-    </div>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>
+                    通知内容
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="notification-index">
+                        <%= render @notifications %>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 <% else %>
     <p>通知はありません</p>
 <% end %>
