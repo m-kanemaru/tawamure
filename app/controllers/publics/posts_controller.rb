@@ -27,7 +27,7 @@ class Publics::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: [*current_user.following_ids,current_user.id]).page(params[:page])
+    @posts = Post.where(user_id: [*current_user.following_ids,current_user.id]).page(params[:page]).reverse_order
     @user = current_user
   end
 
