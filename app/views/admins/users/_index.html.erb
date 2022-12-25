@@ -13,6 +13,11 @@
         <td><%= image_tag user.get_image_id, size: '100x100',class:'rounded-circle' %></td>
         <td><%= user.nickname %></td>
         <td><%= user.introduction %></td>
+        <% if user.is_deleted == false %>
+          <td class="text-success">有効</td>
+        <% else %>
+          <td class="text-danger">無効</td>
+        <% end %>
         <td><%= link_to 'Show', admins_user_path(user), class: "user_#{user.id}" %></td>
       </tr>
     <% end %>

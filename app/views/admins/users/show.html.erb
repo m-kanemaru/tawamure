@@ -5,9 +5,15 @@
             <%= render 'admins/users/user', user: @user %>
             <div class='row'>
                 <%= form_with model:@user, url: admins_user_path, method: :PATCH, local:true do |f| %>
-                    <div class='col-12'><%= f.label :会員ステータス %></div>
-                    <div class='col-12'><%= f.radio_button :is_deleted?, false, checked: true %>有効</div>
-                    <div class='col-12'><%= f.radio_button :is_deleted, true %>退会</div>
+                   <div class='col-12'><%= f.label :会員ステータス %></div>
+                    <div class='col-12'>
+                        <%= f.radio_button :is_deleted, false, checked: true %>
+                        <%= f.label :is_deleted, '有効', value: false %>
+                    </div>
+                    <div class='col-12'>
+                        <%= f.radio_button :is_deleted, true %>
+                        <%= f.label :is_deleted, '退会', value: true %>
+                    </div>
                     <div class='col-12'><%= f.submit "変更を保存" %></div>
                 <% end %>
             </div>
