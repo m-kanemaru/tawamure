@@ -2,10 +2,12 @@
     <% if chat.user_id != current_user.id %>
         <tr>
             <th>
-               <p style="text-align: left;">
-                    <%= chat.message %>
-                </p>
-                <%= chat.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <div style="text-align: left;">
+                    <p><%= chat.message %></p>
+                    <div class="text-secondary">
+                        <%= chat.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </div>
+                </div>
             </th>
             <th></th>
         </tr>
@@ -13,10 +15,12 @@
         <tr>
             <th></th>
             <th>
-                <p style="text-align: right;">
-                    <%= chat.message %>
-                </p>
-                <%= chat.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <div style="text-align: right;">
+                    <p><%= chat.message %></p>
+                    <div class="text-secondary">
+                        <%= chat.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </div>
+                </div>
             </th>
         </tr>
     <% end %>
