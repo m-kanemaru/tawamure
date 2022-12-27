@@ -7,7 +7,9 @@ class Publics::GroupsController < ApplicationController
   end
   
   def index
-    @groups = Group.page(params[:page])
+    # @groups = Group.order("group.user_groups.count(user_id) desc").page(params[:page])
+    groups =  Group.includes(:user_groups).sort {|a,b| b.user_groups.size <=> a.user_groups.size}
+    @groups = Kaminari.paginate_array(groups).page(params[:page])
   end
 
   def show
